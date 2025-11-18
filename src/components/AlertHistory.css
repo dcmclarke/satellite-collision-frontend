@@ -1,0 +1,26 @@
+.alert-history {
+  padding: 20px;
+}
+
+.alert-item {
+  border: 2px solid gray;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #333;
+}
+
+.alert-item.critical {
+  border-left: 5px solid red;
+}
+
+.alert-item.warning {
+  border-left: 5px solid orange;
+}
+
+.alert-item.info {
+  border-left: 5px solid blue;
+}
+
+.acknowledged {
+  color: lightgreen;
+}

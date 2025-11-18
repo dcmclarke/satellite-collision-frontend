@@ -1,0 +1,13 @@
+.navbar {
+  background-color: black;
+  padding: 10px;
+}
+
+.navbar h1 {
+  margin: 5px;
+}
+
+.nav-link {
+  color: lightblue;
+  margin-right: 15px;
+}
