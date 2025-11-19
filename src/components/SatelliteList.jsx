@@ -101,14 +101,19 @@ function SatelliteList() {
         />
       </div>
 
-      <div className="action-buttons">
-        <button onClick={handleLoadBackup} disabled={loading}>
-          Load Backup Data
-        </button>
-        <button onClick={runCollisionDetection} disabled={loading}>
-          Detect Collisions
-        </button>
-      </div>
+  
+      {/*temp showing only detect collisions for survey */}
+<div className="action-buttons">
+  <button onClick={runCollisionDetection} disabled={loading}>
+    Detect Collisions
+  </button>
+</div>
+
+{/* backup data button hidden for survey, will restore after
+<button onClick={handleLoadBackup} disabled={loading}>
+  Load Backup Data
+</button>
+*/}
 
       {message && (
         <div className="message">

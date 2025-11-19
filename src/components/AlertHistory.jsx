@@ -111,7 +111,7 @@ function AlertHistory() {
 
               <div className="alert-actions">
                 {alert.acknowledged ? (
-                  <span className="acknowledged">✓ Acknowledged</span>
+                  <span className="acknowledged">Acknowledged</span>
                 ) : (
                   <button 
                     className="acknowledge-btn"
