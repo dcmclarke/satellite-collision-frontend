@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { satelliteApi } from '../services/api';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFile, faSatellite, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import './SatelliteList.css';
 
 function SatelliteList() {
@@ -7,6 +9,7 @@ function SatelliteList() {
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState('');
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
 
   //loads satellites when page opens (from pattern React docs)
@@ -20,8 +23,10 @@ function SatelliteList() {
       const response = await satelliteApi.getAllSatellites();
       setSatellites(response.data);
       setMessage(`Loaded ${response.data.length} satellites`);
+      setMessageType('info');
     } catch (error) {
       setMessage(`Error: ${error.message}`);
+      setMessageType('error');
     } finally {
       setLoading(false);
     }
@@ -30,6 +35,7 @@ function SatelliteList() {
   const handleLoadBackup = async() => {
     setLoading(true);
     setMessage('Loading backup data...');
+    setMessageType('info');
     console.log('Loading backup satellites');
     try {
       const response = await satelliteApi.loadBackupData();
@@ -37,6 +43,7 @@ function SatelliteList() {
       await loadSatellites();
     } catch (error) {
       setMessage(`${error.message}`);
+      setMessageType('error');
     } finally {
       setLoading(false);
     }
@@ -45,16 +52,20 @@ function SatelliteList() {
   const runCollisionDetection = async () => {
     if (satellites.length === 0) {
       setMessage('Load satellites first!');
+      setMessageType('error');
       return;
     }
     
     setLoading(true);
     setMessage('Running collision detection...');
+    setMessageType('info');
     try {
       const response = await satelliteApi.detectCollisions();
       setMessage(`${response.data}`);
+      setMessageType('success');
     } catch (err) {
       setMessage(`${err.message}`);
+      setMessageType('error');
     } finally {
       setLoading(false);
     }
@@ -71,8 +82,8 @@ function SatelliteList() {
 
   //filter as user types in search box
   const filteredSatellites = satellites.filter(sat =>
-    sat.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    sat.noradId.toLowerCase().includes(searchTerm.toLowerCase())
+    String(sat.name).toLowerCase().includes(searchTerm.toLowerCase()) ||
+    String(sat.noradId).toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   //need to copy array with [...] before sorting so dont mutate original
@@ -89,25 +100,42 @@ function SatelliteList() {
 
   return (
     <div className="satellite-list">
-      <h1>Satellite Catalogue</h1>
-      
-      <div className="controls">
-        <input
-          type="text"
-          placeholder="Search by name or NORAD ID..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="search-input"
-        />
+
+      {/* workflow section */}
+      <div className="workflow-section">
+        <div className="workflow-steps">
+          <div className="step step-1">
+            <div className="step-icon">
+              <FontAwesomeIcon icon={faFile} />
+            </div>
+            <h3>Step 1: Load Data</h3>
+            <p>Fetch NASA satellites or use backup</p>
+          </div>
+          
+          <div className="step-arrow">→</div>
+          
+          <div className="step step-2">
+            <div className="step-icon active">
+              <FontAwesomeIcon icon={faSatellite} />
+            </div>
+            <h3>Step 2: Detect</h3>
+            <p>Run collision detection algorithm</p>
+          </div>
+          
+          <div className="step-arrow">→</div>
+          
+          <div className="step step-3">
+            <div className="step-icon">
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </div>
+            <h3>Step 3: Review</h3>
+            <p>View warnings and alerts</p>
+          </div>
+        </div>
       </div>
 
   
-      {/*temp showing only detect collisions for survey */}
-<div className="action-buttons">
-  <button onClick={runCollisionDetection} disabled={loading}>
-    Detect Collisions
-  </button>
-</div>
+      {/*temp showing only detect collisions for survey (controls relocated below) */}
 
 {/* backup data button hidden for survey, will restore after
 <button onClick={handleLoadBackup} disabled={loading}>
@@ -115,13 +143,31 @@ function SatelliteList() {
 </button>
 */}
 
+      {loading && <div className="loading">Processing...</div>}
+
+      {/* put controls and actions immediately above the data table */}
+      <div className="controls-and-actions">
+        <div className="action-buttons left">
+          <button onClick={runCollisionDetection} disabled={loading}>
+            Detect Collisions
+          </button>
+        </div>
+        <div className="controls">
+          <input
+            type="text"
+            placeholder="Search by name or NORAD ID..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-input"
+          />
+        </div>
+      </div>
+
       {message && (
-        <div className="message">
+        <div className={`message ${messageType} ${messageType === 'success' ? 'emphasize' : ''}`}>
           {message}
         </div>
       )}
-
-      {loading && <div className="loading">Processing...</div>}
 
       {sortedSatellites.length > 0 ? (
         <table className="satellite-table">

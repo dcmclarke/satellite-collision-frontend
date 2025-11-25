@@ -40,11 +40,18 @@ function AlertHistory() {
     }
   };
 
-  //filter alerts based on selected filter
-  const filteredAlerts = alerts.filter(alert => {
+  //filter and sort alerts, unacknowledged at top
+const filteredAlerts = alerts
+  .filter(alert => {
     if (filter === 'all') return true;
-    return !alert.acknowledged; // Show only unacknowledged
-  });
+    return !alert.acknowledged;
+  })
+  .sort((a, b) => {
+    if (a.acknowledged === b.acknowledged) {
+      return new Date(b.sentAt) - new Date(a.sentAt);
+    }
+    return a.acknowledged ? 1 : -1;
+  });	
 
   //helper formatting timestamp as relative time
   const formatTimeAgo = (timestamp) => {
