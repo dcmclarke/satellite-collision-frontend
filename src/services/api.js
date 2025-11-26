@@ -14,6 +14,10 @@ export const satelliteApi = {
   detectCollisions: () => {
     return axios.post(`${API_BASE}/satellites/detect-collisions`);
   },
+
+  fetchNasaData: () => {
+  return axios.post(`${API_BASE}/satellites/fetch-nasa-data`);
+  },
 };
 
 export const collisionApi = {

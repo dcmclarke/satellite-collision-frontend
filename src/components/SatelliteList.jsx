@@ -32,17 +32,20 @@ function SatelliteList() {
     }
   };
 
-  const handleLoadBackup = async() => {
+  const handleLoadBackup = async () => { 
     setLoading(true);
-    setMessage('Loading backup data...');
+    setMessage('Loading backup satellite data...');
     setMessageType('info');
-    console.log('Loading backup satellites');
     try {
       const response = await satelliteApi.loadBackupData();
       setMessage(`${response.data}`);
+      setMessageType('success');
+
+      //wait 2 secs 
+      await new Promise(resolve => setTimeout(resolve, 2000));
       await loadSatellites();
-    } catch (error) {
-      setMessage(`${error.message}`);
+    } catch (err) {
+      setMessage(`Error: ${err.message}`);
       setMessageType('error');
     } finally {
       setLoading(false);
@@ -98,61 +101,124 @@ function SatelliteList() {
     return 0;
   });
 
-  return (
-    <div className="satellite-list">
+  const handleFetchNasa = async () => {
+  setLoading(true);
+  setMessage('Fetching live NASA data from Space-Track.org...');
+  setMessageType('info');
 
-      {/* workflow section */}
-      <div className="workflow-section">
-        <div className="workflow-steps">
-          <div className="step step-1">
-            <div className="step-icon">
-              <FontAwesomeIcon icon={faFile} />
-            </div>
-            <h3>Step 1: Load Data</h3>
-            <p>Fetch NASA satellites or use backup</p>
-          </div>
-          
-          <div className="step-arrow">→</div>
-          
-          <div className="step step-2">
-            <div className="step-icon active">
-              <FontAwesomeIcon icon={faSatellite} />
-            </div>
-            <h3>Step 2: Detect</h3>
-            <p>Run collision detection algorithm</p>
-          </div>
-          
-          <div className="step-arrow">→</div>
-          
-          <div className="step step-3">
-            <div className="step-icon">
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </div>
-            <h3>Step 3: Review</h3>
-            <p>View warnings and alerts</p>
+  try {
+    
+    const response = await satelliteApi.fetchNasaData();
+    
+    setMessage(`${response.data}`);
+    setMessageType('success');
+    //wait 3 seconds before load sats for user to read message
+    await new Promise(resolve => setTimeout(resolve, 5000));
+    await loadSatellites();
+  } catch (error) {
+    setMessage(`Error: ${error.message}`);
+    setMessageType('error');
+  } finally {
+    setLoading(false);
+  }
+};
+
+  return (
+
+  <div className="satellite-list">
+    
+    {/* Hero Section */}
+    <div className="hero-section">
+      <h1>Satellite Collision Detection System</h1>
+      <p className="subtitle">Educational tool for detecting potential satellite collisions using real NASA orbital data</p>
+    </div>
+
+    {/* Workflow Section - Simpler */}
+    <div className="workflow-section">
+      <h2>How It Works</h2>
+      <div className="workflow-steps">
+        <div className="step">
+          <div className="step-number">1</div>
+            <div className="step-content">
+              <h3>Load Data</h3>
+              <p>Choose backup or NASA data source</p>
           </div>
         </div>
+    
+    <div className="step">
+      <div className="step-number">2</div>
+      <div className="step-content">
+        <h3>Detect Collisions</h3>
+        <p>Run algorithm to check satellite pairs</p>
+      </div>
+    </div>
+    
+    <div className="step">
+      <div className="step-number">3</div>
+      <div className="step-content">
+        <h3>Review Results</h3>
+        <p>Check warnings and alerts pages</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+    {/* Action Panel*/}
+    <div className="action-panel">
+      <div className="panel-header">
+        <h3>Load Satellite Data</h3>
+        <p>Choose your data source to begin analysis</p>
+      </div>
+      
+      <div className="action-buttons-grid">
+        <button 
+          onClick={handleLoadBackup} 
+          disabled={loading}
+          className="btn-secondary"
+        >
+          <FontAwesomeIcon icon={faFile} />
+          <span>Load Backup Data</span>
+          <small>(4 satellites)</small>
+        </button>
+        
+        <button 
+          onClick={handleFetchNasa} 
+          disabled={loading}
+          className="btn-primary"
+        >
+          <FontAwesomeIcon icon={faSatellite} />
+          <span>Fetch NASA Data</span>
+          <small>(500+ satellites)</small>
+        </button>
       </div>
 
-  
-      {/*temp showing only detect collisions for survey (controls relocated below) */}
-
-{/* backup data button hidden for survey, will restore after
-<button onClick={handleLoadBackup} disabled={loading}>
-  Load Backup Data
-</button>
-*/}
-
-      {loading && <div className="loading">Processing...</div>}
-
-      {/* put controls and actions immediately above the data table */}
-      <div className="controls-and-actions">
-        <div className="action-buttons left">
-          <button onClick={runCollisionDetection} disabled={loading}>
-            Detect Collisions
+      {satellites.length > 0 && (
+        <div className="detection-section">
+          <button 
+            onClick={runCollisionDetection} 
+            disabled={loading}
+            className="btn-detect"
+          >
+            Run Collision Detection
           </button>
         </div>
-        <div className="controls">
+      )}
+    </div>
+
+    {/* Status Message */}
+    {message && (
+      <div className={`message ${messageType}`}>
+        {message}
+      </div>
+    )}
+
+    {loading && <div className="loading">Processing...</div>}
+
+    {/* Data Table Section */}
+    {satellites.length > 0 && (
+      <div className="data-section">
+        <div className="data-header">
+          <h3>Loaded Satellites ({satellites.length})</h3>
           <input
             type="text"
             placeholder="Search by name or NORAD ID..."
@@ -161,15 +227,7 @@ function SatelliteList() {
             className="search-input"
           />
         </div>
-      </div>
 
-      {message && (
-        <div className={`message ${messageType} ${messageType === 'success' ? 'emphasize' : ''}`}>
-          {message}
-        </div>
-      )}
-
-      {sortedSatellites.length > 0 ? (
         <table className="satellite-table">
           <thead>
             <tr>
@@ -191,22 +249,25 @@ function SatelliteList() {
                 <td>{sat.name}</td>
                 <td>{sat.noradId}</td>
                 <td>{sat.altitude.toFixed(2)}</td>
-                <td>
-                  {sat.latitude.toFixed(2)}°, {sat.longitude.toFixed(2)}°
-                </td>
+                <td>{sat.latitude.toFixed(2)}°, {sat.longitude.toFixed(2)}°</td>
               </tr>
             ))}
           </tbody>
         </table>
-      ) : (
-        !loading && <p className="no-data">No satellites loaded. Click "Load Backup Data" to begin.</p>
-      )}
 
-      {sortedSatellites.length > 0 && (
-        <p className="count">Showing {sortedSatellites.length} satellites</p>
-      )}
-    </div>
-  );
+        <p className="count">Showing {sortedSatellites.length} of {satellites.length} satellites</p>
+      </div>
+    )}
+
+    {!loading && satellites.length === 0 && (
+      <div className="empty-state">
+        <FontAwesomeIcon icon={faSatellite} size="3x" color="#94a3b8" />
+        <h3>No Satellite Data Loaded</h3>
+        <p>Load backup data or fetch real NASA data to begin collision detection</p>
+      </div>
+    )}
+  </div>
+);
 }
 
 export default SatelliteList;

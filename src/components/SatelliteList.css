@@ -1,266 +1,313 @@
 .satellite-list {
-  padding: 20px;
+  padding: 0;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.controls {
-  margin-bottom: 18px;
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+  color: white;
+  padding: 48px 32px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.hero-section h1 {
+  margin: 0 0 12px 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 16px;
+  color: #bfdbfe;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Workflow Section */
+.workflow-section {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  margin: 0 20px 32px 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.workflow-section h2 {
+  text-align: center;
+  color: #1e3a8a;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 32px 0;
+}
+
+.workflow-steps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 32px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  max-width: 200px;
+}
+
+.step-number {
+  background-color: #2563eb;
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.step-icon {
+  background-color: #eff6ff;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: #2563eb;
+  border: 3px solid #dbeafe;
+}
+
+.step-label {
+  color: #1e3a8a;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.step-arrow {
+  color: #94a3b8;
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+/* Action Panel */
+.action-panel {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  margin: 0 20px 32px 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.panel-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.panel-header h3 {
+  color: #1e3a8a;
+  font-size: 20px;
+  margin: 0 0 8px 0;
+}
+
+.panel-header p {
+  color: #64748b;
+  font-size: 14px;
+  margin: 0;
+}
+
+.action-buttons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.action-buttons-grid button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 24px;
+  margin: 0;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.action-buttons-grid button svg {
+  font-size: 32px;
+}
+
+.action-buttons-grid button small {
+  font-size: 12px;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  color: white;
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+  color: white;
+}
+
+.detection-section {
+  text-align: center;
+  padding-top: 24px;
+  border-top: 2px dashed #e5e7eb;
+}
+
+.btn-detect {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  padding: 16px 48px;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Messages */
+.message {
+  margin: 0 20px 24px 20px;
+  padding: 16px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.message.info {
+  background-color: #eff6ff;
+  border-left: 4px solid #3b82f6;
+  color: #1e40af;
+}
+
+.message.success {
+  background-color: #f0fdf4;
+  border-left: 4px solid #10b981;
+  color: #065f46;
+}
+
+.message.error {
+  background-color: #fef2f2;
+  border-left: 4px solid #dc2626;
+  color: #991b1b;
+}
+
+/* Data Section */
+.data-section {
+  margin: 0 20px;
+}
+
+.data-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 20px;
+}
+
+.data-header h3 {
+  color: #1e3a8a;
+  margin: 0;
+  font-size: 18px;
 }
 
 .search-input {
-  padding: 10px 12px;
-  width: 100%;
-  max-width: 520px;
-  height: 40px;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(16,24,40,0.04);
-  transition: box-shadow .15s ease, border-color .15s ease;
-  box-sizing: border-box;
-  align-self: center;
+  padding: 10px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  width: 300px;
 }
+
 .search-input:focus {
   outline: none;
-  border-color: #60a5fa;
-  box-shadow: 0 6px 18px rgba(96,165,250,0.12);
+  border-color: #3b82f6;
 }
 
-.message {
-  background-color: #f8fafc;
-  color: #0f172a;
-  padding: 10px 12px;
-  border-radius: 6px;
-  border: 1px solid #e2e8f0;
-  margin-top: 12px;
-}
-
-table {
-  border-collapse: separate;
-  border-spacing: 0;
+/* Table */
+.satellite-table {
   width: 100%;
-  background: #ffffff;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   border-radius: 8px;
   overflow: hidden;
 }
 
-th, td {
-  padding: 12px 14px;
-  border-bottom: 1px solid #eef2f7;
-}
-
 th {
-  background: linear-gradient(180deg,#fff 0%,#f8fafc 100%);
+  background-color: #1e3a8a;
+  color: white;
+  padding: 14px;
   text-align: left;
   font-weight: 600;
-}
-
-.satellite-table tbody tr:hover {
-  background: #f8fafc;
-}
-
-.action-buttons {
-  margin: 0;
-  display: flex;
-  align-items: center;
-}
-
-.action-buttons button {
-  background: #0369a1;
-  color: #ffffff;
-  border: none;
-  padding: 10px 14px;
-  height: 40px;
-  border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 6px 14px rgba(3,105,161,0.12);
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-}
-.action-buttons button:disabled {
-  opacity: 0.6;
-  cursor: default;
+  font-size: 14px;
 }
 
-.workflow-section {
-  background: #ffffff;
-  border-radius: 10px;
-  padding: 28px 20px;
-  margin-bottom: 22px;
-  box-shadow: 0 6px 20px rgba(2,6,23,0.04);
+th:hover {
+  background-color: #1e40af;
 }
 
-/* Workflow steps layout */
-.workflow-steps {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 24px;
-  max-width: 1000px;
-  margin: 0 auto;
+td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #1a1a1a;
+  font-size: 14px;
 }
 
-.workflow-steps .step {
-  width: 30%;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 6px 12px;
+tr:hover {
+  background-color: #f9fafb;
 }
 
-.workflow-steps .step-icon {
-  order: 2;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 10px 30px rgba(2,6,23,0.08);
-  font-size: 40px;
-  margin: 14px 0;
-  transition: transform .18s ease, box-shadow .18s ease;
-}
-.workflow-steps .step-icon:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 36px rgba(2,6,23,0.12);
-}
-
-.workflow-steps .step h3 {
-  order: 1;
-  margin: 0 0 6px 0;
-  font-size: 1.15rem;
-  color: #0f172a;
-}
-
-.workflow-steps .step p {
-  order: 3;
-  margin: 8px 0 0 0;
-  color: #475569;
-  line-height: 1.5;
-}
-
-.workflow-steps .step-arrow {
-  display: none;
-}
-
-.workflow-steps .step-icon {
-  position: relative;
-}
-
-.workflow-steps .step-icon::after {
-  display: none;
-}
-
-.workflow-steps .step:last-child .step-icon::after {
-  display: none;
-}
-
-.workflow-steps .step .step-icon.active,
-.workflow-steps .step-icon.active {
-  background: #e6f6ff;
-  border: 3px solid #0369a1;
-}
-
-.workflow-steps .step-1 .step-icon {
-  background: linear-gradient(180deg,#fffaf0 0%, #fff6e0 100%);
-  border: 3px solid #f59e0b;
-}
-.workflow-steps .step-2 .step-icon {
-  background: linear-gradient(180deg,#fff5f5 0%, #ffecec 100%);
-  border: 3px solid #ef4444;
-}
-.workflow-steps .step-3 .step-icon {
-  background: linear-gradient(180deg,#ecfff2 0%, #e6ffee 100%);
-  border: 3px solid #059669;
-}
-
-/* TODO: WHY NEED OVERDIE TO MAKE IT RED NOT BLUE IF REMOVE THIS*/
-.workflow-steps .step.step-2 .step-icon,
-.workflow-steps .step.step-2 .step-icon.active {
-  background: linear-gradient(180deg,#fff5f5 0%, #ffecec 100%) !important;
-  border: 3px solid #ef4444 !important;
-}
-
-.controls-and-actions {
-  display: flex;
-  justify-content: flex-start;
-  align-items: stretch;
-  gap: 12px;
-  margin: 14px auto 8px auto;
-  max-width: 1200px;
-  width: 100%;
-  padding: 0 12px;
-}
-.controls-and-actions .controls {
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  order: 2;
-}
-.controls-and-actions .action-buttons {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  order: 1;
-}
-
-.controls-and-actions .action-buttons.left {
-  margin-right: 0;
-}
-
-@media (max-width: 800px) {
-  .workflow-steps {
-    flex-direction: column;
-    gap: 16px;
-  }
-  .workflow-steps .step {
-    width: 100%;
-  }
-  .workflow-steps .step-icon {
-    width: 88px;
-    height: 88px;
-    font-size: 26px;
-  }
-}
-
-.satellite-list h1 {
-  font-size: 2rem;
-  margin-bottom: 10px;
+tr:last-child td {
+  border-bottom: none;
 }
 
 .count {
-  margin-top: 12px;
-  color: #334155;
+  margin-top: 16px;
+  color: #64748b;
+  font-size: 14px;
+  text-align: center;
 }
 
-.message {
-  white-space: normal;
-  word-break: break-word;
-  max-width: 1200px;
-}
-.message.info {
-  background: #f8fafc;
-  color: #0f172a;
-  border: 1px solid #e2e8f0;
-}
-.message.success {
-  background: #fff1f2;
-  color: #7f1d1d;
-  border: 1px solid #fecaca;
-  font-weight: 600;
-}
-.message.error {
-  background: #fff1f2;
-  color: #b91c1c;
-  border: 1px solid #fecaca;
-  font-weight: 600;
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  color: #64748b;
 }
 
-.message.emphasize {
-  padding: 14px 16px;
-  font-size: 1rem;
-  box-shadow: 0 6px 18px rgba(2,6,23,0.04);
-  border-left: 6px solid rgba(190,18,60,0.9);
+.empty-state h3 {
+  color: #475569;
+  margin: 16px 0 8px 0;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #3b82f6;
+  font-size: 16px;
+  font-weight: 500;
 }
