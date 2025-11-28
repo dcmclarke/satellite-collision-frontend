@@ -1,12 +1,12 @@
 .satellite-list {
-  padding: 0;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 0;;
+  margin: 0;
+  width: 100%;
 }
 
 /* Hero Section */
 .hero-section {
-  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+  background: #2563eb;
   color: white;
   padding: 48px 32px;
   text-align: center;
@@ -158,13 +158,21 @@
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  background-color: #2563eb;
   color: white;
 }
 
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
 .btn-secondary {
-  background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+  background-color: #64748b;
   color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #475569;
 }
 
 .detection-section {
@@ -174,12 +182,16 @@
 }
 
 .btn-detect {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background-color: #10b981;
   color: white;
   padding: 16px 48px;
   font-size: 18px;
   font-weight: 700;
   margin: 0;
+}
+
+.btn-detect:hover {
+  background-color: #059669;
 }
 
 /* Messages */

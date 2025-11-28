@@ -1,0 +1,117 @@
+.how-to-use {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.guide-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.guide-header h1 {
+  color: #1e3a8a;
+  font-size: 32px;
+  margin: 0 0 12px 0;
+}
+
+.guide-header p {
+  color: #64748b;
+  font-size: 16px;
+}
+
+.guide-section {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 32px;
+  margin-bottom: 24px;
+}
+
+.guide-section h2 {
+  color: #1e3a8a;
+  font-size: 24px;
+  margin: 0 0 20px 0;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 12px;
+}
+
+.guide-section h3 {
+  color: #2563eb;
+  font-size: 18px;
+  margin: 24px 0 12px 0;
+}
+
+.guide-section ol,
+.guide-section ul {
+  color: #1a1a1a;
+  line-height: 1.8;
+}
+
+.guide-section li {
+  margin-bottom: 8px;
+}
+
+.guide-section strong {
+  color: #1e3a8a;
+}
+
+/* Risk Guide */
+.risk-guide {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.risk-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 5px solid;
+}
+
+.risk-item.critical {
+  background-color: #fef2f2;
+  border-left-color: #dc2626;
+}
+
+.risk-item.warning {
+  background-color: #fffbeb;
+  border-left-color: #f59e0b;
+}
+
+.risk-item.info {
+  background-color: #eff6ff;
+  border-left-color: #3b82f6;
+}
+
+.risk-badge {
+  background-color: #1e3a8a;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 80px;
+  text-align: center;
+}
+
+.risk-item.critical .risk-badge {
+  background-color: #dc2626;
+}
+
+.risk-item.warning .risk-badge {
+  background-color: #f59e0b;
+}
+
+.risk-item.info .risk-badge {
+  background-color: #3b82f6;
+}
+
+.risk-item p {
+  margin: 0;
+  color: #1a1a1a;
+}

@@ -18,7 +18,7 @@
 
 .filter-tabs button {
   background-color: transparent;
-  color: #64748b;
+  color: white;
   border: none;
   border-bottom: 3px solid transparent;
   padding: 12px 20px;
@@ -35,7 +35,7 @@
 }
 
 .filter-tabs button.active {
-  color: #1e3a8a;
+  color: white;
   border-bottom-color: #2563eb;
   font-weight: 600;
 }
@@ -43,8 +43,11 @@
 /* Collision Grid */
 .collision-grid {
   display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 24px;
+  grid-template-columns: repeat(2, 1 fr);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 /* Collision Cards */
