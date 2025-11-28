@@ -28,7 +28,7 @@ body {
 button {
   padding: 12px 24px;
   margin: 8px;
-  background: linear-gradient(135deg, var(--blue) 0%, var(--navy) 100%);
+  background: var(--blue);
   color: white;
   border: none;
   border-radius: 8px;

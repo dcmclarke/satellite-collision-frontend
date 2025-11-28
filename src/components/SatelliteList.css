@@ -163,7 +163,7 @@
 }
 
 .btn-primary:hover {
-  background-color: #1d4ed8;
+  background-color: #1e40af;
 }
 
 .btn-secondary {
@@ -240,16 +240,23 @@
 }
 
 .search-input {
-  padding: 10px 16px;
+  padding: 8px 16px;
   border: 2px solid #e5e7eb;
   border-radius: 8px;
   font-size: 14px;
-  width: 300px;
+  width: 100%;
+  max-width: 800px;
+  box-sizing: border-box;
+  text-align: left;
 }
 
 .search-input:focus {
   outline: none;
   border-color: #3b82f6;
+}
+
+.search-input::placeholder {
+  text-align: left;
 }
 
 /* Table */
