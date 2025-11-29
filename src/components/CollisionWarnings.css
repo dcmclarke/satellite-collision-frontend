@@ -1,10 +1,13 @@
 .collision-warnings {
   padding: 20px;
+  max-width: 2200px;
+  margin: 0 auto;
 }
 
 .collision-warnings h1 {
   color: #000000;
   margin-bottom: 24px;
+  font-size: 28px;
 }
 
 /* Filter Tabs */
@@ -23,6 +26,7 @@
   border-radius: 8px;
   cursor: pointer;
   font-weight: 500;
+  font-size: 15px;
   transition: background-color 0.2s;
 }
 
@@ -39,10 +43,7 @@
 .collision-grid {
   display: grid;
   gap: 24px;
-  grid-template-columns: repeat(2, 1 fr);
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
 }
 
 /* Collision Cards */
@@ -88,7 +89,7 @@
   color: white;
   padding: 4px 12px;
   border-radius: 12px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -114,7 +115,7 @@
 /* Card Body */
 .card-body h3 {
   color: #1e3a8a;
-  font-size: 16px;
+  font-size: 17px;
   margin: 0 0 12px 0;
 }
 
@@ -127,7 +128,7 @@
 .detail-item {
   display: flex;
   justify-content: space-between;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .detail-label {
@@ -142,19 +143,22 @@
 
 /* Messages */
 .message {
-  background-color: #54c968;
-  border-left: 4px solid #000000;
-  padding: 12px 16px;
+  background-color: #f0fdf4;
+  border-left: 4px solid #10b981;
+  padding: 14px 16px;
   margin-bottom: 16px;
   border-radius: 4px;
-  color: #000000;
+  color: #065f46;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: left;
 }
 
 .loading {
   text-align: center;
   padding: 40px;
   color: #3b82f6;
-  font-size: 16px;
+  font-size: 17px;
 }
 
 .no-data {
@@ -167,5 +171,6 @@
 .count {
   margin-top: 16px;
   color: #64748b;
-  font-size: 14px;
+  font-size: 15px;
+  text-align: left;
 }
