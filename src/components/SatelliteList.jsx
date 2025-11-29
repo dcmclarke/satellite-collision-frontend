@@ -21,7 +21,6 @@ function SatelliteList() {
     try {
       const response = await satelliteApi.getAllSatellites();
       setSatellites(response.data);
-      // Don't show message when just loading satellites
       setMessage('');
       setMessageType('');
     } catch (error) {
@@ -116,20 +115,20 @@ function SatelliteList() {
   return (
     <div className="satellite-list">
       
-      {/* New User Info */}
+      {/* new user info */}
       <div className="new-user-info">
         <FontAwesomeIcon icon={faInfoCircle} />
         <span>New here? Check the <a href="/how-to-use">Guide page</a> to learn how to use this system</span>
       </div>
 
-      {/* Quick Start Section */}
+      {/* quick start */}
       <div className="quick-start-section">
         <div className="quick-start-header">
           <h2>Quick Start</h2>
         </div>
         <p className="quick-start-subtitle">Choose a data source, then run collision detection</p>
 
-        {/* Note about backup data */}
+        {/* backup data note */}
         <div className="backup-note">
           <strong>Note:</strong> Backup data is for demo/presentation purposes if the NASA Space-Track API is unavailable
         </div>
@@ -178,7 +177,7 @@ function SatelliteList() {
         )}
       </div>
 
-      {/* Status Message */}
+      {/* status message */}
       {message && (
         <div className={`message ${messageType}`}>
           {message}
@@ -187,7 +186,7 @@ function SatelliteList() {
 
       {loading && <div className="loading">Processing...</div>}
 
-      {/* Data Table Section */}
+      {/* data table */}
       {satellites.length > 0 && (
         <div className="data-section">
           <div className="data-header">

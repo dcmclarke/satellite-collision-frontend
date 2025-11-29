@@ -5,7 +5,7 @@ import './AlertHistory.css';
 function AlertHistory() {
   const [alerts, setAlerts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [filter, setFilter] = useState('all'); //'all' or 'unacknowledged'
+  const [filter, setFilter] = useState('all');
   const [message, setMessage] = useState('');
 
   //load alerts when component mounts
@@ -40,7 +40,7 @@ function AlertHistory() {
     }
   };
 
-  //filter and sort alerts, unacknowledged at top
+  //filter & sort alerts, unacknowledged at top
 const filteredAlerts = alerts
   .filter(alert => {
     if (filter === 'all') return true;
@@ -53,7 +53,7 @@ const filteredAlerts = alerts
     return a.acknowledged ? 1 : -1;
   });	
 
-  //helper formatting timestamp as relative time
+  //helper formatting timestamp relative time
   const formatTimeAgo = (timestamp) => {
     const now = new Date();
     const alertTime = new Date(timestamp);
@@ -72,7 +72,7 @@ const filteredAlerts = alerts
     <div className="alert-history">
       <h1>Alert History</h1>
 
-      {/* Filter Controls */}
+      {/* filter controls */}
       <div className="filter-controls">
         <button 
           className={filter === 'all' ? 'active' : ''} 
@@ -88,13 +88,13 @@ const filteredAlerts = alerts
         </button>
       </div>
 
-      {/* Message */}
+      {/* message */}
       {message && <div className="message">{message}</div>}
 
-      {/* Loading State */}
+      {/* loading state */}
       {loading && <div className="loading">Loading alert history...</div>}
 
-      {/* Alert List */}
+      {/* alert list */}
       {!loading && filteredAlerts.length > 0 ? (
         <div className="alert-list">
           {filteredAlerts.map(alert => (
@@ -105,15 +105,17 @@ const filteredAlerts = alerts
               <div className="alert-header">
                 <span className="alert-level">{alert.alertLevel}</span>
                 <span className="alert-time">{formatTimeAgo(alert.sentAt)}</span>
-                </div>
+              </div>
 
               <div className="alert-message">{alert.message}</div>
 
               <div className="alert-details">
-                <span className="detail-label">Satellites:</span>
-                <span className="detail-value">
-                  {alert.prediction?.satellite1?.name} ↔ {alert.prediction?.satellite2?.name}
-                </span>
+                <div className="detail-row">
+                  <span className="detail-label">Satellites:</span>
+                  <span className="detail-value">
+                    {alert.prediction?.satellite1?.name} ↔ {alert.prediction?.satellite2?.name}
+                  </span>
+                </div>
               </div>
 
               <div className="alert-actions">
@@ -142,7 +144,6 @@ const filteredAlerts = alerts
         )
       )}
 
-      {/* Count */}
       {filteredAlerts.length > 0 && (
         <p className="count">Showing {filteredAlerts.length} alert{filteredAlerts.length !== 1 ? 's' : ''}</p>
       )}

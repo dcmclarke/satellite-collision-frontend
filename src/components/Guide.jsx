@@ -1,7 +1,7 @@
 import React from 'react';
-import './HowToUse.css';
+import './Guide.css';
 
-function HowToUse() {
+function Guide() {
   return (
     <div className="how-to-use">
       <div className="guide-header">
@@ -13,11 +13,11 @@ function HowToUse() {
         <section className="guide-section">
           <h2>Getting Started</h2>
           <ol>
-            <li>Navigate to the <strong>Satellites</strong> page</li>
-            <li>Click either <strong>Load Backup Data</strong> (4 satellites) or <strong>Fetch NASA Data</strong> (500+ satellites)</li>
+            <li>Navigate to the Satellites page</li>
+            <li>Click either Load Backup Data (4 satellites) or Fetch NASA Data (500+ satellites)</li>
             <li>Wait for data to load - you'll see a table of satellites</li>
-            <li>Click <strong>Run Collision Detection</strong></li>
-            <li>View results on the <strong>Warnings</strong> or <strong>Alerts</strong> pages</li>
+            <li>Click Run Collision Detection</li>
+            <li>View results on the Warnings or Alerts pages</li>
           </ol>
         </section>
 
@@ -43,26 +43,20 @@ function HowToUse() {
           <h2>Page Descriptions</h2>
           
           <h3>Satellites Page</h3>
-          <ul>
-            <li><strong>Load Backup Data:</strong> Loads 4 pre-configured satellites for quick testing</li>
-            <li><strong>Fetch NASA Data:</strong> Downloads real-time data from NASA Space-Track (takes 30-60 seconds)</li>
-            <li><strong>Run Collision Detection:</strong> Analyzes all satellite pairs for potential collisions</li>
-            <li><strong>Search:</strong> Filter satellites by name or NORAD ID</li>
-            <li><strong>Table Headers:</strong> Click to sort by that column</li>
-          </ul>
+          <p><strong>Load Backup Data:</strong> Loads 4 pre-configured satellites for quick testing</p>
+          <p><strong>Fetch NASA Data:</strong> Downloads real-time data from NASA Space-Track (takes 30-60 seconds)</p>
+          <p><strong>Run Collision Detection:</strong> Analyzes all satellite pairs for potential collisions</p>
+          <p><strong>Search:</strong> Filter satellites by name or NORAD ID</p>
+          <p><strong>Table Headers:</strong> Click to sort by that column</p>
 
           <h3>Warnings Page</h3>
-          <ul>
-            <li><strong>Filter Tabs:</strong> Show all warnings or filter by risk level (Critical/Warning/Info)</li>
-            <li><strong>Collision Cards:</strong> Display details about each potential collision including distance, probability, and satellite names</li>
-          </ul>
+          <p><strong>Filter Tabs:</strong> Show all warnings or filter by risk level (Critical/Warning/Info)</p>
+          <p><strong>Collision Cards:</strong> Display details about each potential collision including distance, probability, and satellite names</p>
 
           <h3>Alerts Page</h3>
-          <ul>
-            <li><strong>All Alerts:</strong> View all alerts from the last 24 hours</li>
-            <li><strong>Unacknowledged:</strong> Filter to show only alerts that haven't been reviewed</li>
-            <li><strong>Acknowledge Alert:</strong> Mark an alert as reviewed</li>
-          </ul>
+          <p><strong>All Alerts:</strong> View all alerts from the last 24 hours</p>
+          <p><strong>Unacknowledged:</strong> Filter to show only alerts that haven't been reviewed</p>
+          <p><strong>Acknowledge Alert:</strong> Mark an alert as reviewed</p>
         </section>
 
         <section className="guide-section">
@@ -77,4 +71,4 @@ function HowToUse() {
   );
 }
 
-export default HowToUse;
+export default Guide;

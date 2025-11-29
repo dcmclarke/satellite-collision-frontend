@@ -24,7 +24,7 @@ body {
   min-height: 100vh;
 }
 
-/* Buttons */
+/* buttons */
 button {
   padding: 12px 24px;
   margin: 8px;
@@ -55,7 +55,7 @@ button:disabled {
   box-shadow: none;
 }
 
-/* Cards */
+/* cards */
 .card {
   background: white;
   border-radius: 12px;
@@ -64,12 +64,12 @@ button:disabled {
   border: 1px solid #e5e7eb;
 }
 
-/* Headings */
+/* headings */
 h1, h2, h3 {
   color: var(--navy);
 }
 
-/* Links */
+/* links */
 a {
   color: var(--blue);
   text-decoration: none;
@@ -77,4 +77,15 @@ a {
 
 a:hover {
   color: var(--navy);
+}
+
+/* messages */
+.message {
+  margin-bottom: 32px;
+  padding: 16px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  border-left: 4px solid;
+  max-width: 1000px;
 }

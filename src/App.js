@@ -4,7 +4,7 @@ import Navigation from './components/Navigation';
 import SatelliteList from './components/SatelliteList';
 import CollisionWarnings from './components/CollisionWarnings';
 import AlertHistory from './components/AlertHistory';
-import HowToUse from './components/HowToUse';
+import Guide from './components/Guide';
 import './App.css';
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
           <Route path="/" element={<SatelliteList />} />
           <Route path="/collisions" element={<CollisionWarnings />} />
           <Route path="/alerts" element={<AlertHistory />} />
-          <Route path="/how-to-use" element={<HowToUse />} />
+          <Route path="/how-to-use" element={<Guide />} />
         </Routes>
       </div>
     </BrowserRouter>

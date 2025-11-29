@@ -4,13 +4,17 @@
   margin: 0 auto;
 }
 
+.collision-warnings .message {
+  text-align: left !important;
+}
+
 .collision-warnings h1 {
   color: #000000;
   margin-bottom: 24px;
   font-size: 28px;
 }
 
-/* Filter Tabs */
+/* filter tabs */
 .filter-tabs {
   display: flex;
   gap: 8px;
@@ -39,26 +43,26 @@
   font-weight: 600;
 }
 
-/* Collision Grid */
 .collision-grid {
   display: grid;
-  gap: 24px;
-  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(550px, 1fr));
+  max-width: 100%;
 }
 
-/* Collision Cards */
+/* collision card */
 .collision-card {
   background-color: white;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  border-left: 5px solid #94a3b8;
-  transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-left: 7px solid #94a3b8;
+  transition: transform 0.15s, box-shadow 0.15s;
 }
 
 .collision-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transform: translateX(3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .collision-card.critical {
@@ -76,22 +80,25 @@
   background-color: #eff6ff;
 }
 
-/* Card Header */
+/* card header */
 .card-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  gap: 8px;
 }
 
 .risk-badge {
   background-color: #94a3b8;
   color: white;
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 13px;
-  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.8px;
+  white-space: nowrap;
 }
 
 .critical .risk-badge {
@@ -110,13 +117,16 @@
   font-size: 18px;
   font-weight: 700;
   color: #1e3a8a;
+  white-space: nowrap;
 }
 
-/* Card Body */
+/* card body */
 .card-body h3 {
-  color: #1e3a8a;
+  color: #1a1a1a;
   font-size: 17px;
-  margin: 0 0 12px 0;
+  margin: 0 0 10px 0;
+  line-height: 1.4;
+  font-weight: 600;
 }
 
 .card-details {
@@ -129,19 +139,22 @@
   display: flex;
   justify-content: space-between;
   font-size: 15px;
+  gap: 8px;
 }
 
 .detail-label {
   color: #64748b;
   font-weight: 500;
+  flex: 0 0 auto;
 }
 
 .detail-value {
   color: #1a1a1a;
   font-weight: 600;
+  text-align: right;
+  flex: 1;
 }
-
-/* Messages */
+/* messages */
 .message {
   background-color: #f0fdf4;
   border-left: 4px solid #10b981;
@@ -151,7 +164,12 @@
   color: #065f46;
   font-size: 15px;
   font-weight: 500;
-  text-align: left;
+  text-align: left !important;
+  display: block !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  max-width: none !important;
 }
 
 .loading {
@@ -173,4 +191,16 @@
   color: #64748b;
   font-size: 15px;
   text-align: left;
+}
+
+@media (max-width: 1800px) {
+  .collision-grid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .collision-grid {
+    grid-template-columns: 1fr;
+  }
 }

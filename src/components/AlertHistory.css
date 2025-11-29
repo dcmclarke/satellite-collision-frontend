@@ -4,13 +4,17 @@
   margin: 0 auto;
 }
 
+.alert-history .message {
+  text-align: left !important;
+}
+
 .alert-history h1 {
   color: #000000;
   margin-bottom: 24px;
   font-size: 28px;
 }
 
-/* Filter Controls */
+/* filter controls */
 .filter-controls {
   display: flex;
   gap: 8px;
@@ -39,20 +43,28 @@
   font-weight: 600;
 }
 
-/* Alert List */
+/* alert list List */
 .alert-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
+  max-width: 1800px;
+  margin: 0;
 }
 
 .alert-item {
   border: 2px solid #e5e7eb;
-  padding: 20px;
+  padding: 16px;
   background-color: white;
-  border-left: 5px solid;
+  border-left: 7px solid;
   color: #1a1a1a;
-  border-radius: 6px;
+  border-radius: 10px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.alert-item:hover {
+  transform: translateX(3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .alert-item.critical {
@@ -79,12 +91,13 @@
 
 .alert-level {
   font-weight: 700;
-  font-size: 13px;
+  font-size: 15px;
   text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 12px;
+  padding: 9px 18px;
+  border-radius: 16px;
   background: #e5e7eb;
   color: #374151;
+  letter-spacing: 0.8px;
 }
 
 .alert-item.critical .alert-level {
@@ -103,21 +116,23 @@
 }
 
 .alert-time {
-  font-size: 14px;
+  font-size: 17px;
   color: #64748b;
+  font-weight: 500;
 }
 
 .alert-message {
-  font-size: 15px;
-  margin-bottom: 12px;
+  font-size: 19px;
+  margin-bottom: 10px;
   font-weight: 500;
+  line-height: 1.6;
 }
 
 .alert-details {
   display: flex;
-  gap: 8px;
+  gap: 12px;
   margin-bottom: 12px;
-  font-size: 14px;
+  font-size: 17px;
 }
 
 .detail-label {
@@ -131,18 +146,19 @@
 }
 
 .alert-actions {
-  margin-top: 12px;
+  margin-top: 10px;
 }
 
 .acknowledge-btn {
   background: #2563eb;
   color: white;
   border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
+  padding: 12px 24px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 600;
+  transition: background-color 0.2s;
 }
 
 .acknowledge-btn:hover {
@@ -152,10 +168,10 @@
 .acknowledged {
   color: #10b981;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 17px;
 }
 
-/* Messages */
+/* messages */
 .message {
   background-color: #f0fdf4;
   border-left: 4px solid #10b981;
@@ -165,7 +181,12 @@
   color: #065f46;
   font-size: 15px;
   font-weight: 500;
-  text-align: left;
+  text-align: left !important;
+  display: block !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  max-width: none !important;
 }
 
 .loading {
@@ -187,4 +208,4 @@
   color: #64748b;
   font-size: 15px;
   text-align: left;
-}
+} 

@@ -5,7 +5,7 @@ import './CollisionWarnings.css';
 function CollisionWarnings() {
   const [collisions, setCollisions] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [filter, setFilter] = useState('all');
+  const [filter, setFilter] = useState('critical-warning');
   const [message, setMessage] = useState('');
 
   //load collisions when page opens
@@ -27,10 +27,13 @@ function CollisionWarnings() {
     }
   };
 
-  //filter collisions basd on selected tab
-  //had to use .filter() and .toLowerCase() as backend sends "CRITICAL" but need "critical" for comparasion
+  //filter collisions based on selected tab
   const filteredCollisions = collisions.filter(collision => {
     if (filter === 'all') return true;
+    if (filter === 'critical-warning') {
+      return collision.riskLevel.toLowerCase() === 'critical' || 
+             collision.riskLevel.toLowerCase() === 'warning';
+    }
     return collision.riskLevel.toLowerCase() === filter;
   });
 
@@ -38,13 +41,20 @@ function CollisionWarnings() {
   const criticalCount = collisions.filter(c => c.riskLevel === 'CRITICAL').length;
   const warningCount = collisions.filter(c => c.riskLevel === 'WARNING').length;
   const infoCount = collisions.filter(c => c.riskLevel === 'INFO').length;
+  const criticalWarningCount = criticalCount + warningCount;
 
   return (
     <div className="collision-warnings">
       <h1>Collision Warnings</h1>
 
-      {/* Filter Tabs */}
+      {/* filter tabs */}
       <div className="filter-tabs">
+        <button 
+          className={filter === 'critical-warning' ? 'active' : ''} 
+          onClick={() => setFilter('critical-warning')}
+        >
+          Critical + Warning ({criticalWarningCount})
+        </button>
         <button 
           className={filter === 'all' ? 'active' : ''} 
           onClick={() => setFilter('all')}
@@ -71,13 +81,10 @@ function CollisionWarnings() {
         </button>
       </div>
 
-      {/* Message */}
       {message && <div className="message">{message}</div>}
-
-      {/* Loading */}
       {loading && <div className="loading">Loading collisions...</div>}
 
-      {/* Collision Cards */}
+      {/* collision cards */}
       {!loading && filteredCollisions.length > 0 ? (
         <div className="collision-grid">
           {filteredCollisions.map(collision => (
@@ -122,13 +129,15 @@ function CollisionWarnings() {
           <div className="no-data">
             {filter === 'all' 
               ? 'No collision predictions found. Run collision detection first!'
+              : filter === 'critical-warning'
+              ? 'No critical or warning collisions found.'
               : `No ${filter} risk collisions found.`
             }
           </div>
         )
       )}
 
-      {/* Count */}
+      {/* counting collisions */}
       {filteredCollisions.length > 0 && (
         <p className="count">Showing {filteredCollisions.length} predictions</p>
       )}
